@@ -1,3 +1,4 @@
+Phase 1:
 This part is about preparing the data for face recognition. Here’s what we did step by step:
 
 1. Data Collection
@@ -57,4 +58,67 @@ The next step is to load the .npz file and verify the data before training FaceN
 Printing sample faces with their labels
 Checking the shape of the arrays
 Making sure all classes are correctly represented
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Phase 2: 
+Generating Face EmbeddingsObjective 
 
+Steps Taken:
+
+Installing Required Libraries
+
+We started by installing all necessary libraries including:
+
+keras-facenet
+
+tensorflow, numpy
+
+Using FaceNet for Embedding Extraction
+
+We implemented FaceNet_embedding.py, which:
+
+Loads the pre-trained FaceNet model.
+Converts face images into 512-dimensional embedding vectors using the get_embedding() function.
+
+We tested another option using VGG16_embedding.py, but did not use it in the final pipeline.
+
+Why FaceNet Instead of VGG16?
+
+FaceNet is specifically trained for face recognition and person identification.
+VGG16 is a general-purpose image classification model (better for classes like humans, dogs, cats...).
+
+Therefore, FaceNet was a better choice for generating robust face embeddings.
+
+Saving the Embeddings
+
+We used save_embedding.py to:
+
+Load the original dataset of aligned face images (face-dataset.npz).
+Generate embeddings for each face image using FaceNet.
+Save the resulting embeddings and their labels into a compressed file: face-embeddings.npz.
+
+ Challenges Faced:
+
+At first, there was some confusion about the embedding size:
+
+We expected a 128-dimensional vector (as in some FaceNet implementations), but our model returned 512-dimensional vectors.
+
+After verifying that it’s still consistent with the keras-facenet version, we decided to keep the 512-d embedding because:
+
+It contains more information.
+It resulted in no errors.
+It may improve classification accuracy.
+
+Output:
+
+File: face-embeddings.npz
+
+Contains:
+
+trainX: 512-d embeddings of training face images.
+trainy: corresponding labels.
+testX: 512-d embeddings of testing face images.
+testy: corresponding labels.
+
+Conclusion:
+
+We successfully completed Phase 2 by generating meaningful embeddings using FaceNet. The dataset is now ready for training a classifier.
