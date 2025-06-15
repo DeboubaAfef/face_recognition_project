@@ -122,3 +122,62 @@ testy: corresponding labels.
 Conclusion:
 
 We successfully completed Phase 2 by generating meaningful embeddings using FaceNet. The dataset is now ready for training a classifier.
+-------------------------------------------------------------------------------------------------------------------------------------
+
+🧠 Phase 3: Modeling & Deployment
+🎯 Goal
+Train multiple models on face embeddings, choose the best, and deploy the system using Streamlit.
+
+🔍 Step 1: Model Training & Evaluation (save_best_model.py)
+Input: face-embeddings.npz from FaceNet.
+
+Preprocessing:
+
+Normalization (L2)
+
+Label encoding
+
+Models Tested:
+
+✅ KNN (92% accuracy) → Best
+
+SVM (~88%)
+
+Random Forest (~86%)
+
+Outputs:
+
+knn_model.joblib
+
+normalizer.joblib, label_encoder.joblib
+
+Confusion matrices for all models
+
+🚀 Step 2: Deployment (face_recognition_app.py)
+Built with Streamlit
+
+Workflow:
+
+Upload image
+
+Extract face (Extract_Face.py)
+
+Generate embedding (FaceNet)
+
+Predict using KNN
+
+Show result only if confidence ≥ 90%
+
+Supported classes:
+["Angelina_Jolie", "Emma Watson", "Leonardo_DiCaprio", "Scarlett Johansson", "Will_Smith", "none"]
+
+📌 Summary
+✅ Best model: KNN
+
+📈 Accuracy: ~92%
+
+🧪 App tested and functional
+
+🔐 Resources saved for reusability
+
+
